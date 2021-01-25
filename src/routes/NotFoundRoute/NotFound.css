@@ -1,0 +1,18 @@
+.notFound {
+    background: none;
+    border: none;
+}
+
+.four {
+    color: black;
+    text-shadow: 2px 2px rgb(133, 0, 0);
+    font-size: 45px;
+    font-weight: bold;
+}
+
+p {
+    font-size: 25px;
+    color: black;
+    text-shadow: 2px 2px rgb(133, 0, 0);
+    font-weight: bold;
+}

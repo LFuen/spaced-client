@@ -1,0 +1,29 @@
+GET http://localhost:8000/api/language
+    Authorization: Bearer c3f5a85c-2f9d-11eb-adc1-0242ac120002
+
+###
+
+GET http://localhost:8000/api/language/head
+    Authorization: Bearer c3f5a85c-2f9d-11eb-adc1-0242ac120002
+
+###
+
+POST http://localhost:8000/api/user
+Content-Type: application/json
+
+{
+    "username": "user",
+    "password": "Password1!",
+    "name": "name"
+}
+
+###
+
+POST http://localhost:8000/api/user
+Content-Type: application/json
+
+{
+    "username": "user",
+    "password": "Password1!",
+    "name": "name"
+}

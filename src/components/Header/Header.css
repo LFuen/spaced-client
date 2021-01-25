@@ -1,0 +1,34 @@
+.navigation {
+    display: flex;
+    justify-content: center;
+    color: black;
+    font-size: 25px;
+    font-weight: bolder;
+    padding: 20px;
+}
+
+header {
+    color:black;
+    align-content: center;
+    margin-top: 25px;
+    margin-bottom: 100px;
+    display: flex;
+    justify-content: center;
+}
+
+.spaced {
+    display: flex;
+    justify-content: center;
+    color: black;
+    font-size: 25px;
+    font-weight: bolder;
+    padding-right: 20px;
+}
+
+.spaced:hover,
+.spaced:focus {
+    color: rgb(134, 12, 12);
+    text-shadow: 2px 2px rgb(87, 87, 87);
+    background-size: 100%;
+    border-radius: 50px;
+}

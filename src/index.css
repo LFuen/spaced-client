@@ -1,13 +1,44 @@
+@import url('https://fonts.googleapis.com/css?family=Ubuntu');
+
 body {
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
+  padding: 0;
+  font-family: "Ubuntu", sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  background-image: url('./images/bg.jpg');
+  content: "";
 }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+:root {
+  --font-size: calc(10px + 1vmin);
+}
+
+section {
+  flex-direction: column;
+  background:linear-gradient(to left, rgb(1, 9, 114), rgb(144, 19, 19));;
+  border:5px solid;
+  border-image-slice: 1;
+  border-image-source: linear-gradient(to right, rgb(1, 9, 114), rgb(144, 19, 19));
+  color:rgb(255, 255, 255); 
+  text-shadow: 2px 2px rgb(0, 0, 0);
+  width: 50%;
+  align-self: center;
+}
+
+a {
+  color:rgb(155, 155, 155);
+  font-size: 15px;
+  text-decoration: none;
+}
+
+a:hover,
+a:focus {
+    color: rgb(111, 202, 255);
+    text-shadow: 2px 2px rgb(87, 87, 87);
+    background-size: 100%;
+    border-radius: 50px;
+    width: fit-content;
+    height: fit-content;
+    font-weight: bold;
 }

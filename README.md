@@ -1,70 +1,47 @@
-# Getting Started with Create React App
+# Spaced Repetition Capstone
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## Setup
 
-## Available Scripts
+To setup the application
 
-In the project directory, you can run:
+1. Fork and clone the project to your machine
+2. `npm install`. This will also install the application *Cypress.io* for running browser integration tests
 
-### `npm start`
+The project expects you have the Spaced repetition API project setup and running on http://localhost:8000.
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+Find instructions to setup the API here https://github.com/Thinkful-Ed/spaced-repetition-api.
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+## Running project
 
-### `npm test`
+This is a `create-react-app` project so `npm start` will start the project in development mode with hot reloading by default.
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+## Running the tests
 
-### `npm run build`
+This project uses [Cypress IO](https://docs.cypress.io) for integration testing using the Chrome browser.
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+Cypress has the following expectations:
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+- You have cypress installed (this is a devDependency of the project)
+- You have your application running at http://localhost:3000.
+  - You can change the address of this expectation in the `./cypress.json` file.
+- Your `./src/config.js` is using http://localhost:8000/api as the `API_ENDPOINT`
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+To start the tests run the command:
 
-### `npm run eject`
+```bash
+npm run cypress:open
+```
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+On the first run of this command, the cypress application will verify its install. Any other runs after this, the verification will be skipped.
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+The command will open up the Cypress application which reads tests from the `./cypress/integration/` directory. You can then run individual tests by clicking on the file names or run all tests by clicking the "run all tests" button in the cypress GUI.
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+Tests will assert against your running localhost client application.
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+You can also start all of the tests in the command line only (not using the GUI) by running the command:
 
-## Learn More
+```bash
+npm run cypress:run
+```
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+This will save video recordings of the test runs in the directory `./cypress/videos/`.
