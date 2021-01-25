@@ -27,3 +27,8 @@ Content-Type: application/json
     "password": "Password1!",
     "name": "name"
 }
+
+###
+
+PATCH http://localhost:8000/api/auth/token
+
