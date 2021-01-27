@@ -38,14 +38,17 @@ class DashboardRoute extends Component {
     return (
       <div>
         {this.context.words === null ? (
-          <p> no words found</p>
+          <p> No words found, sorry! </p>
         ) : (
           <>
             <h2> {this.context.language}</h2>
-            <a href="/learn">Start practicing</a>
+            <a href="/learn" className='practice'>Start practicing</a>
             <h3>Words to practice</h3>
-            <ul>{this.renderWords()}</ul>
-            <p>Total correct answers: {this.context.total_score}</p>
+            <div className='center'>
+              <li key={this.context.word}>{this.renderWords()}</li>
+            </div>
+            <p>Total correct answers: 
+              <em className='right'>{this.context.total_score}</em></p>
           </>
         )}
       </div>

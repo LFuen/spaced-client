@@ -1,10 +1,10 @@
 GET http://localhost:8000/api/language
-    Authorization: Bearer c3f5a85c-2f9d-11eb-adc1-0242ac120002
+    Authorization: bearer change-this-secret
 
 ###
 
 GET http://localhost:8000/api/language/head
-    Authorization: Bearer c3f5a85c-2f9d-11eb-adc1-0242ac120002
+    Authorization: bearer change-this-secret
 
 ###
 
@@ -27,8 +27,4 @@ Content-Type: application/json
     "password": "Password1!",
     "name": "name"
 }
-
-###
-
-PATCH http://localhost:8000/api/auth/token
 

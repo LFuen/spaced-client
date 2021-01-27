@@ -1,6 +1,9 @@
 require('dotenv').config()
 
-export default {
+ const config = {
   API_ENDPOINT: 'http://localhost:8000/api',
-  TOKEN_KEY: 'c3f5a85c-2f9d-11eb-adc1-0242ac120002',
+  TOKEN_KEY: 'change-this-secret',
 }
+
+
+export default config

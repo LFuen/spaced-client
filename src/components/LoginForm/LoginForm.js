@@ -45,16 +45,15 @@ class LoginForm extends Component {
     const { error } = this.state
     return (
       <form
-        className='LoginForm'
         onSubmit={this.handleSubmit}
       >
         <div role='alert'>
           {error && <p>{error}</p>}
         </div>
-        <div className='login'>
-          <Label htmlFor='login-username-input'>
-            Username
-          </Label>
+        <div>
+          <Label htmlFor='login-username-input' className='namePass'>
+            Username 
+          </Label><br/>
           <Input
             ref={this.firstInput}
             id='login-username-input'
@@ -62,10 +61,10 @@ class LoginForm extends Component {
             required
           />
         </div>
-        <div className='login'>
-          <Label htmlFor='login-password-input'>
-            Password
-          </Label>
+        <div>
+          <Label htmlFor='login-password-input' className='namePass'>
+            Password 
+          </Label><br/>
           <Input
             id='login-password-input'
             name='password'

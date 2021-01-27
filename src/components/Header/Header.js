@@ -32,9 +32,7 @@ class Header extends Component {
     return (
         <nav>
           <Link to='/register' className='navigation'>Sign up</Link>          
-          {' '}
           <Link to='/login' className='navigation'>Login</Link>
-          {' '}
         </nav>
     )
   }
@@ -44,7 +42,7 @@ class Header extends Component {
       <header>
         <h1>
           <Link to='/' className='spaced'>
-            Spaced repetition
+            Spaced Repetition
           </Link>
         </h1>
         {TokenService.hasAuthToken()

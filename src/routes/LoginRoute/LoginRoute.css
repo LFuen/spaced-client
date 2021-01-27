@@ -1,0 +1,12 @@
+.login {
+    background: url('../../images/login.png');
+    background-attachment: cover;
+    background-repeat: none;
+    width: 35%;
+    align-items: center;
+    margin: auto;
+    padding: 25px;
+    border-radius: 10px;
+    border: 5px solid black;
+    box-shadow: 4px 4px 4px 4px rgba(0, 0, 0, 0.534);
+}

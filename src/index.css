@@ -8,6 +8,8 @@ body {
   -moz-osx-font-smoothing: grayscale;
   background-image: url('./images/bg.jpg');
   content: "";
+  text-align: center;
+  background-attachment: fixed;
 }
 
 :root {
@@ -42,3 +44,4 @@ a:focus {
     height: fit-content;
     font-weight: bold;
 }
+

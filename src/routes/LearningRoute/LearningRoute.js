@@ -2,22 +2,12 @@ import React, { Component } from 'react'
 import config from '../../config'
 import UserContext from '../../contexts/UserContext'
 import Token from '../../services/token-service'
+import './LearningRoute.css'
 
 class LearningRoute extends Component {
   static contextType = UserContext
 
-  static = {
-    answer: null,
-    translation: '',
-    score: 0,
-    correct: '',
-    incorrect: '',
-    total: 0,
-    isClicked: false,
-    nextWord: null,
-    response: {},
-    guess: ''
-  }
+  state = {}
 
   handleNext() {
     this.setState({
@@ -27,8 +17,8 @@ class LearningRoute extends Component {
       translation: '',
       answer: null,
       nextWord: {
-        nextWord: this.state.respose.nextWord,
-        totalScore: this.state.response.nextWord.totalScore,
+        nextWord: this.state.response.nextWord,
+        totalScore: this.state.response.totalScore,
         wordCorrectCount: this.state.response.wordCorrectCount,
         wordIncorrectCount: this.state.response.wordIncorrectCount
       }
@@ -38,16 +28,16 @@ class LearningRoute extends Component {
   async componentDidMount() {
     try {
       const response = await fetch(
-        `${config.API_ENDPOINT}/langage/head`,
+        `${config.API_ENDPOINT}/language/head`,
         {
           headers:{
-            authorization: `Bearer ${Token.getAuthToken()}`,
+            authorization: `bearer ${Token.getAuthToken()}`,
           },
         }
     )
-
+        
     const results = await response.json()
-
+console.log(results)
     this.context.setNextWord(results)
     this.setState({nextWord: results})
     this.setState({
@@ -64,10 +54,10 @@ class LearningRoute extends Component {
 
   async submitForm(e) {
     e.preventDefault() 
-    const guesses = e.target.guesses.value.toLowerCase().trim()
-    e.target.guesses.value = ''
-    this.setState({guess: guesses})
-    this.context.setGuess(guesses)
+    const guess = e.target.guess.value.toLowerCase().trim()
+    e.target.guess.value = ''
+    this.setState({guess: guess})
+    this.context.setGuess(guess)
 
     try {
       const results = await fetch(
@@ -76,13 +66,13 @@ class LearningRoute extends Component {
           method: 'POST',
           headers: {
             'content-type': 'application/json',
-            authorization: `Bearer ${Token.getAuthToken()}`
+            authorization: `bearer ${Token.getAuthToken()}`
           },
-          body: JSON.stringify({guess: guesses}),
+          body: JSON.stringify({guess: guess}),
         }
       )
 
-      const answers = await answers.json()
+      const answers = await results.json()
       this.context.setResponse(answers)
       this.setState({
         response: answers,
@@ -112,26 +102,28 @@ class LearningRoute extends Component {
   render() {
     return (
       <div>
-      <form onSubmit={(e) => this.submitForm(e, this.context)}>
-        {this.state.answer == null && <h2>Translate this:</h2>}
+      <form className='form' onSubmit={(e) => this.submitForm(e, this.context)}>
+        {this.state.answer == null && <h2 className='label'>Translate this:</h2>}
         {this.state.answer === 'correct' && (
           <div className='DisplayFeedback'>
-            <h2>That's the right answer!</h2>
-            <p>We were looking for {' '} 
-              {this.state.translation}, for the translation of {' '} 
-              {this.state.nextWord.nextWord}, and you chose {' '} 
-              {this.state.guess}. Sweet!</p>
+            <h2 className='label'>That's the right answer!</h2>
+            <p className='label'>We were looking for 
+            '<em className='word'>{this.state.translation}</em>',<br/>
+            for the translation of 
+            '<em className='check'>{this.state.nextWord.nextWord}</em>', <br/>
+            and you said '<em className='word'>{this.state.guess}</em>'.</p>
+              <p>Sweet!</p>
           </div>
         )}
         <span className='word'>
           {this.state.isClicked === false && this.state.nextWord ?
             this.state.nextWord.nextWord : null}
         </span>
-        <div className='DisplayScore'>
-          {' '} <p>Your total score is: {this.state.total}</p>
-        </div>
-        {this.state.isClicked === false && <fieldset>
-          <label htmlFor='learn-guess-input'>What does this translate to?</label>
+
+        {this.state.isClicked === false && (<fieldset>
+          <label htmlFor='learn-guess-input'
+          className='label'>What does this translate to? </label>
+          <br/>
           <input
             name='guess'
             id='learn-guess-input'
@@ -140,13 +132,17 @@ class LearningRoute extends Component {
             {this.state.isClicked === false && (
               <button type='submit'>Submit Answer</button>
             )}
-            </fieldset>}
+            </fieldset>)}
 
-            <p>You have translated this correctly {this.state.correct}{' '} times!</p>
-            <p>You have not translated this correctly {this.state.incorrect}{' '} times.</p>
-      </form>
-      {this.state.answer !== null && (
-        <button onClick={() => this.handleNext()}>On to the next!</button>
+            <p className='label'>You have translated this correctly <em className='right'>{this.state.correct}</em> time(s)!</p>
+            <p className='label'>You have translated this incorrectly <em className='wrong'>{this.state.incorrect}</em> time(s).</p>
+            <div className='DisplayScore'>
+              <p className='label'>Your total score is: 
+              <em className='word'> {this.state.total}</em></p>
+            </div>
+        </form>
+      {!!this.state.answer && (
+        <button onClick={() => this.handleNext()}>Gimme Another!</button>
       )}
       </div>
     );

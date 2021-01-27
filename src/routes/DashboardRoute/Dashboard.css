@@ -1,0 +1,31 @@
+li {
+    list-style: none;
+    width: fit-content;
+    margin: auto;
+    color: whitesmoke;
+    padding: 15px;
+    text-shadow: 2px 2px 2px rgb(0, 0, 0);
+    font-size: 25px;
+}
+
+.center {
+    border: 2px solid black;
+    border-radius: 20px;
+    box-shadow: 4px 4px 4px 4px rgba(0, 0, 0, 0.534);
+    width: 40%;
+    margin: auto;
+    background: linear-gradient(crimson, rgb(20, 40, 220));
+}
+
+.right {
+    color:rgb(39, 192, 25);
+    font-weight: bold;
+}
+
+.practice {
+    color: rgb(93, 93, 93);
+    padding: 15px;
+    text-shadow: 2px 2px 2px rgb(0, 0, 0);
+    font-size: 25px;
+    font-weight: bold;
+}

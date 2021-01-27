@@ -7,11 +7,11 @@ const UserContext = React.createContext({
   user: {},
   error: null,
   language: null,
-  words: null,
+  words: [],
   nextWord: null,
   response: null,
   guess: null,
-  total_score: 0,
+  totalScore: 0,
   setGuess: () => {},
   setResponse: () => {},
   setError: () => {},
@@ -34,9 +34,9 @@ export class UserProvider extends Component {
       user: {},
       error: null,
       language: null,
-      words: null,
+      words: [],
       nextWord: null,
-      total_score: 0,
+      totalScore: 0,
       currWord: null,
       guess: null,
       response: null,
@@ -59,9 +59,9 @@ export class UserProvider extends Component {
   componentDidMount() {
     if (TokenService.hasAuthToken()) {
       IdleService.regiserIdleTimerResets()
-      TokenService.queueCallbackBeforeExpiry(() => {
-        this.fetchRefreshToken()
-      })
+      // TokenService.queueCallbackBeforeExpiry(() => {
+      //   this.fetchRefreshToken()
+      // })
     }
   }
 
@@ -89,8 +89,8 @@ export class UserProvider extends Component {
   setWords = words => {
     this.setState({words: words})
   };
-  setNextWord = word =>{
-    this.setState({nextWord: word})
+  setNextWord = next =>{
+    this.setState({nextWord: next})
   };
   
   setResponse = (response) => {
@@ -126,21 +126,21 @@ export class UserProvider extends Component {
       username: jwtPayload.sub,
     })
     IdleService.regiserIdleTimerResets()
-    TokenService.queueCallbackBeforeExpiry(() => {
-      this.fetchRefreshToken()
-    })
+    // TokenService.queueCallbackBeforeExpiry(() => {
+    //   this.fetchRefreshToken()
+    // })
   }
 
   processLogout = () => {
     TokenService.clearAuthToken()
-    TokenService.clearCallbackBeforeExpiry()
+    // TokenService.clearCallbackBeforeExpiry()
     IdleService.unRegisterIdleResets()
     this.setUser({})
   }
 
   logoutBecauseIdle = () => {
     TokenService.clearAuthToken()
-    TokenService.clearCallbackBeforeExpiry()
+    // TokenService.clearCallbackBeforeExpiry()
     IdleService.unRegisterIdleResets()
     this.setUser({ idle: true })
   }
@@ -149,9 +149,9 @@ export class UserProvider extends Component {
     AuthApiService.refreshToken()
       .then(res => {
         TokenService.saveAuthToken(res.authToken)
-        TokenService.queueCallbackBeforeExpiry(() => {
-          this.fetchRefreshToken()
-        })
+        // TokenService.queueCallbackBeforeExpiry(() => {
+        //   this.fetchRefreshToken()
+        // })
       })
       .catch(err => {
         this.setError(err)
