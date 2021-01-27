@@ -16,3 +16,7 @@ p {
     text-shadow: 2px 2px rgb(133, 0, 0);
     font-weight: bold;
 }
+
+section {
+    margin: auto;
+}

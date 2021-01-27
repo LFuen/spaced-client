@@ -47,7 +47,7 @@ class RegistrationForm extends Component {
         <div role='alert'>
           {error && <p>{error}</p>}
         </div>
-        <div className='center'>
+        <div>
           <Label htmlFor='registration-name-input'>
             Enter your name<Required />
           </Label><br/>

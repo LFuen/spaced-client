@@ -17,6 +17,7 @@ class DashboardRoute extends Component {
       !res.ok
         ? res.json().then((e) => Promise.reject(e))
         : res.json().then((data) => {
+            console.log(data.words)
             this.context.setLanguage(data.language.name);
             this.context.setWords(data.words);
             this.context.setTotalScore(data.language.total_score);
@@ -26,11 +27,12 @@ class DashboardRoute extends Component {
 
   renderWords() {
     return this.context.words.map((word, i) => (
-      <li>
-        <h4>{word.original}</h4> <span>Correct: {word.correct_count} </span>
+      <div key={word.id}>
+        <h4>{word.original}</h4> 
+        <span>Correct: {word.correct_count} </span>
         <br/>
         <span>Incorrect: {word.incorrect_count} </span>
-      </li>
+      </div>
     ));
   }
 
@@ -40,16 +42,17 @@ class DashboardRoute extends Component {
         {this.context.words === null ? (
           <p> No words found, sorry! </p>
         ) : (
-          <>
+          <div>
             <h2> {this.context.language}</h2>
             <a href="/learn" className='practice'>Start practicing</a>
             <h3>Words to practice</h3>
             <div className='center'>
-              <li key={this.context.word}>{this.renderWords()}</li>
+              <li>{this.renderWords()}</li>
             </div>
             <p>Total correct answers: 
-              <em className='right'>{this.context.total_score}</em></p>
-          </>
+              <em className='right'>{this.context.total_score}</em>
+            </p>
+          </div>
         )}
       </div>
     );
