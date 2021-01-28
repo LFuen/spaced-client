@@ -19,6 +19,7 @@ class Header extends Component {
         </span>
         <nav>
           <Link
+          className='namePass'
             onClick={this.handleLogoutClick}
             to='/login'>
             Logout

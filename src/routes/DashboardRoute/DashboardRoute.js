@@ -43,7 +43,7 @@ class DashboardRoute extends Component {
           <p> No words found, sorry! </p>
         ) : (
           <div>
-            <h2> {this.context.language}</h2>
+            <h2> {this.context.language} </h2>
             <a href="/learn" className='practice'>Start practicing</a>
             <h3>Words to practice</h3>
             <div className='center'>

@@ -115,6 +115,19 @@ console.log(results)
               <p>Sweet!</p>
           </div>
         )}
+
+        {this.state.answer === 'incorrect' && (
+          <div className='DisplayFeedback'>
+            <h2 className='label'>Sorry, that's the wrong answer!</h2>
+            <p className='label'>We were looking for 
+            '<em className='word'>{this.state.translation}</em>',<br/>
+            for the translation of 
+            '<em className='check'>{this.state.nextWord.nextWord}</em>', <br/>
+            and you said '<em className='word'>{this.state.guess}</em>'.</p>
+              <p>Try again!</p>
+          </div>
+        )}
+
         <span className='word'>
           {this.state.isClicked === false && this.state.nextWord ?
             this.state.nextWord.nextWord : null}
