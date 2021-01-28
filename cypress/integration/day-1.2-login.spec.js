@@ -124,8 +124,7 @@ describe(`User story: Login`, function() {
     const loginToken = helpers.makeLoginToken()
 
     beforeEach(() => {
-      cy.server()
-        .route({
+      cy.intercept({
           method: 'POST',
           url: '/api/auth/token',
           // server determins credentials are correct

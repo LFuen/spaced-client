@@ -16,8 +16,7 @@ import * as helpers from '../support/helpers'
 */
 describe(`User story: User's dashboard`, function () {
   beforeEach(() => {
-    cy.server()
-      .route({
+    cy.intercept({
         method: 'GET',
         url: '/api/language',
         status: 200,
@@ -33,11 +32,12 @@ describe(`User story: User's dashboard`, function () {
   it('has h2 with title, total score, subtitle and link', () => {
     cy.fixture('language.json').then(({ language }) => {
       cy.get('main div').within(($div) => {
-        cy.get('h2').should('contain', `${language.name}`)
+        console.log(language)
+        cy.get('h3').should('contain', `Words to practice`)
 
         cy.root().should(
           'contain',
-          `Total correct answers: 7`
+          `Total correct answers: ${language.total_score}`
         )
 
         cy.get('a')
@@ -56,7 +56,7 @@ describe(`User story: User's dashboard`, function () {
         cy.get('main div li')
           .eq(idx)
           .within(($li) => {
-            cy.get('h4').should('have.text', 'original 1')
+            cy.get('h4').should('have.text', `${word.original}`)
 
             cy.root().should(
               'contain',

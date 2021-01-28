@@ -43,9 +43,9 @@ class DashboardRoute extends Component {
           <p> No words found, sorry! </p>
         ) : (
           <div>
-            <h2> {this.context.language} </h2>
+            <h3> {this.context.language} </h3>
             <a href="/learn" className='practice'>Start practicing</a>
-            <h3>Words to practice</h3>
+            <h2>Words to practice</h2>
             <div className='center'>
               <li>{this.renderWords()}</li>
             </div>

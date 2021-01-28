@@ -15,8 +15,7 @@
 */
 describe(`User story: Answer feedback`, function() {
   beforeEach(() => {
-    cy.server()
-      .route({
+    cy.intercept({
         method: 'GET',
         url: `/api/language/head`,
         status: 200,
@@ -25,9 +24,13 @@ describe(`User story: Answer feedback`, function() {
       .as('languageHeadRequest')
   })
 
+  beforeEach(() => {
+    helpers.Login()
+  })
+
   context(`Given I submit my answer`, () => {
     beforeEach(() => {
-      cy.route({
+      cy.intercept({
         method: 'POST',
         url: `/api/language/guess`,
         status: 200,
@@ -60,7 +63,7 @@ describe(`User story: Answer feedback`, function() {
     const guess = 'test-guess-incorrect'
 
     beforeEach(() => {
-      cy.route({
+      cy.intercept({
         method: 'POST',
         url: `/api/language/guess`,
         status: 200,
@@ -114,7 +117,7 @@ describe(`User story: Answer feedback`, function() {
     const guess = 'test-guess-incorrect'
 
     beforeEach(() => {
-      cy.route({
+      cy.intercept({
         method: 'POST',
         url: `/api/language/guess`,
         status: 200,

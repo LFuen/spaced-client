@@ -10,15 +10,14 @@
 */
 describe(`User story: Go to next word`, function() {
   beforeEach(() => {
-    cy.server()
-      .route({
+    cy.intercept({
         method: 'GET',
         url: `/api/language/head`,
         status: 200,
         response: 'fixture:language-head.json',
       })
       .as('languageHeadRequest')
-      .route({
+      .intercept({
         method: 'POST',
         url: `/api/language/guess`,
         status: 200,

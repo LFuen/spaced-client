@@ -14,8 +14,7 @@ import * as helpers from '../support/helpers'
 */
 describe(`User story: Presented with word`, function() {
   beforeEach(() => {
-    cy.server()
-      .route({
+    cy.intercept({
         method: 'GET',
         url: `/api/language/head`,
         status: 200,
@@ -35,9 +34,10 @@ describe(`User story: Presented with word`, function() {
 
     cy.fixture('language-head.json')
       .then(languageHeadFixture => {
+        console.log(languageHeadFixture)
         cy.get('main').within($main => {
           cy.get('h2')
-            .should('have.text', 'Translate the word:')
+            .should('have.text', 'Translate this:')
             .siblings('span')
             .should('have.text', languageHeadFixture.nextWord)
         })
