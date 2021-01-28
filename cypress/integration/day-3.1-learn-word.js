@@ -1,3 +1,4 @@
+import * as helpers from '../support/helpers'
 /// <reference types="Cypress" />
 
 /**
@@ -21,6 +22,10 @@ describe(`User story: Presented with word`, function() {
         response: 'fixture:language-head.json',
       })
       .as('languageHeadRequest')
+  })
+
+  beforeEach(() => {
+    helpers.Login()
   })
 
   it('displays the current score and h2 with next word', () => {

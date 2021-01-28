@@ -26,18 +26,18 @@ describe(`User story: User's dashboard`, function () {
       .as('languageRequest')
   })
 
-  // beforeEach(() => {
-  //   helpers.Login()
-  // })
+  beforeEach(() => {
+    helpers.Login()
+  })
 
   it('has h2 with title, total score, subtitle and link', () => {
     cy.fixture('language.json').then(({ language }) => {
-      cy.get('main div').within(( div) => {
-        cy.get('h2').should('contain', 'French')
+      cy.get('main div').within(($div) => {
+        cy.get('h2').should('contain', `${language.name}`)
 
         cy.root().should(
           'contain',
-          `Number of Correct Answers: ${language.total_score}`
+          `Total correct answers: 7`
         )
 
         cy.get('a')
@@ -56,7 +56,7 @@ describe(`User story: User's dashboard`, function () {
         cy.get('main div li')
           .eq(idx)
           .within(($li) => {
-            cy.get('h4').should('have.text', word.original[0])
+            cy.get('h4').should('have.text', 'original 1')
 
             cy.root().should(
               'contain',
@@ -65,7 +65,7 @@ describe(`User story: User's dashboard`, function () {
 
             cy.root().should(
               'contain',
-              `Incorrect: ${word.incorrect_count}`
+              `Total correct answers: ${word.total_score}`
             )
           })
       })

@@ -1,5 +1,5 @@
 {
-    "baseUrl": "http://localhost:3000",
+    "baseUrl": "https://spaced-client.lfuen.vercel.app",
     "env": {
       "API_ENDPOINT": "https://lit-everglades-33524.herokuapp.com/api",
       "TOKEN_KEY": "blogful-client-auth-token"

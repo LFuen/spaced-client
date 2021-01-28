@@ -29,8 +29,8 @@ export function Login(){
       .as('loginRequest')
 
     const loginUser = {
-      username: 'username',
-      password: 'password',
+      username: 'admin',
+      password: 'pass',
     }
     cy.visit('/login')
 
