@@ -17,7 +17,6 @@ class DashboardRoute extends Component {
       !res.ok
         ? res.json().then((e) => Promise.reject(e))
         : res.json().then((data) => {
-            console.log(data.words)
             this.context.setLanguage(data.language.name);
             this.context.setWords(data.words);
             this.context.setTotalScore(data.language.total_score);

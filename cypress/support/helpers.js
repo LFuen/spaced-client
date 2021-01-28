@@ -20,7 +20,7 @@ export function Login(){
       .route({
         method: 'POST',
         url: '/api/auth/token',
-        // server determins credentials are correct
+        // server determines credentials are correct
         status: 200,
         response: {
           authToken: loginToken

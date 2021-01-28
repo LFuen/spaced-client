@@ -59,9 +59,6 @@ export class UserProvider extends Component {
   componentDidMount() {
     if (TokenService.hasAuthToken()) {
       IdleService.regiserIdleTimerResets()
-      // TokenService.queueCallbackBeforeExpiry(() => {
-      //   this.fetchRefreshToken()
-      // })
     }
   }
 
@@ -126,21 +123,16 @@ export class UserProvider extends Component {
       username: jwtPayload.sub,
     })
     IdleService.regiserIdleTimerResets()
-    // TokenService.queueCallbackBeforeExpiry(() => {
-    //   this.fetchRefreshToken()
-    // })
   }
 
   processLogout = () => {
     TokenService.clearAuthToken()
-    // TokenService.clearCallbackBeforeExpiry()
     IdleService.unRegisterIdleResets()
     this.setUser({})
   }
 
   logoutBecauseIdle = () => {
     TokenService.clearAuthToken()
-    // TokenService.clearCallbackBeforeExpiry()
     IdleService.unRegisterIdleResets()
     this.setUser({ idle: true })
   }
@@ -149,9 +141,6 @@ export class UserProvider extends Component {
     AuthApiService.refreshToken()
       .then(res => {
         TokenService.saveAuthToken(res.authToken)
-        // TokenService.queueCallbackBeforeExpiry(() => {
-        //   this.fetchRefreshToken()
-        // })
       })
       .catch(err => {
         this.setError(err)

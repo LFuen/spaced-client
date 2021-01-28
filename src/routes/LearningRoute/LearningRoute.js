@@ -37,7 +37,6 @@ class LearningRoute extends Component {
     )
         
     const results = await response.json()
-console.log(results)
     this.context.setNextWord(results)
     this.setState({nextWord: results})
     this.setState({
